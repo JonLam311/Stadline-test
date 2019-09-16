@@ -10,7 +10,7 @@
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js"
   },
-  "repository": "",
+  "repository": "https://github.com/JonLam311/stadline-test",
   "keywords": [],
   "author": "",
   "license": "ISC",
