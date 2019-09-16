@@ -1,5 +1,7 @@
 import {
 	ONCHANGE_INPUT,
+	ONCLICK_USER,
+
 	SEND_URL_REQUEST,
 	SEND_URL_SUCCESS,
 	SEND_URL_ERROR,
@@ -13,12 +15,20 @@ export function onChangeInputAction(payload) {
 	};
 }
 
+export function onClickUserAction(payload) {
+	return {
+		type: ONCLICK_USER,
+		payload,
+	};
+}
+
 // ========== START CONTROL SEND URL ACTION
 export function sendUrlRequestAction() {
 	return {
 		type: SEND_URL_REQUEST,
 	};
 }
+
 
 export function sendUrlSuccessAction(payload) {
 	return {
@@ -37,6 +47,7 @@ export function sendUrlErrorAction(payload) {
 
 
 export const onChangeInput = onChangeInputAction;
+export const onClickUser = onClickUserAction;
 
 export const sendUrlRequest = sendUrlRequestAction;
 export const sendUrlSuccess = sendUrlSuccessAction;

@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import { uniqBy } from 'lodash';
 
 import {
-	ONCHANGE_INPUT, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
+	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
 } from './constants';
 
 const issueStateModel = fromJS({
@@ -28,6 +28,11 @@ export default function issueReducer(
 	case ONCHANGE_INPUT:
 		return state
 			.set('urlToSend', payload);
+	case ONCLICK_USER:
+		console.log('click user fired');
+
+		return state;
+
 
 	case SEND_URL_REQUEST:
 		return state

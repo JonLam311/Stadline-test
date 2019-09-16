@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as selectors from './selectors';
-import { onChangeInputAction, sendUrlRequestAction } from './actions';
+import { onChangeInputAction, onClickUserAction, sendUrlRequestAction } from './actions';
 
 import Input from '../../Components/Input';
 import Commentaire from '../../Components/Commentaire';
@@ -17,8 +17,11 @@ class Issue extends React.Component {
 		} = this.props;
 		const {
 			onChangeInput,
+			onClickUser,
+
 			sendUrlRequest,
 		} = this.props;
+
 		let previousUsersPosition = 'left';
 		console.log(reposDatas);
 		
@@ -41,6 +44,7 @@ class Issue extends React.Component {
 						{
 							reposDatas.users.map(user => (
 								<ListGroup
+									onClick={onClickUser}
 									key={`${user.id}${user.created_at}`}
 									value={user.id}
 									classNames={`
@@ -95,12 +99,17 @@ Issue.propTypes = {
 	reposDatas: PropTypes.object.isRequired,
 
 	onChangeInput: PropTypes.func.isRequired,
+	onClickUser: PropTypes.func.isRequired,
+
 	sendUrlRequest: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
 	onChangeInput: (payload) => {
 		dispatch(onChangeInputAction(payload));
+	},
+	onClickUser: (payload) => {
+		dispatch(onClickUserAction(payload));
 	},
 	sendUrlRequest: () => {
 		dispatch(sendUrlRequestAction());

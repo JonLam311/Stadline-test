@@ -9,9 +9,11 @@ class ListGroup extends PureComponent {
 			classNames, value, srcImg, altImg, titleImg,
 		} = this.props;
 		const {
+			onClick,
 		} = this.props;
 		return (
 			<li
+				onClick={() => onClick(value)}
 				className={classNames}
 			>
 				<img
@@ -32,6 +34,7 @@ ListGroup.propTypes = {
 	altImg: PropTypes.string.isRequired,
 	titleImg: PropTypes.string.isRequired,
 
+	onClick: PropTypes.func.isRequired,
 };
 
 
