@@ -3,12 +3,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import ReactMinimalPieChart from 'react-minimal-pie-chart';
+
 import * as selectors from './selectors';
 import { onChangeInputAction, onClickUserAction, sendUrlRequestAction } from './actions';
 
 import Input from '../../Components/Input';
 import Commentaire from '../../Components/Commentaire';
 import ListGroup from '../../Components/ListGroup';
+
+const colors = [
+	'#313B44', '#840032', '#E59500', '#6E6362', '#839073', '#7D6B91', '#C492B1',
+];
 
 class Issue extends React.Component {
 	render() {
@@ -24,7 +30,7 @@ class Issue extends React.Component {
 
 		let previousUsersPosition = 'left';
 		console.log(reposDatas);
-		
+
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">
@@ -59,9 +65,28 @@ class Issue extends React.Component {
 							))
 						}
 					</ul>
+					{
+						reposDatas.comments.length ? (
+							<ReactMinimalPieChart
+								data={
+									[
+										{ title: 'One', value: 10, color: '#E38627' },
+										{ title: 'Two', value: 15, color: '#C13C37' },
+										{ title: 'Three', value: 20, color: '#6A2135' },
+									]
+								}
+								label
+								labelStyle={{
+									fontSize: '5px',
+									fontFamily: 'sans-serif',
+									fill: '#121212',
+								}}
+								style={{ height: '400px' }}
+							/>
+						) : ''}
 				</div>
 				<div id="discussion" className="col-md-8 justify-content-end">
-				{
+					{
 						reposDatas.comments.length ?
 							reposDatas.comments.map((comment, id) => {
 								const leftOrRight = id === 0 ?
