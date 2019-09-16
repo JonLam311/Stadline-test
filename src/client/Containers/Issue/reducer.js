@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { sortBy, uniqBy, uniq } from 'lodash';
+import { sortBy, uniqBy } from 'lodash';
 
 import {
 	ONCHANGE_INPUT,
@@ -15,6 +15,7 @@ import {
 	CREATE_COMMENT_REQUEST,
 	CREATE_COMMENT_SUCCESS,
 } from './constants';
+
 import pieCalculator from '../../Utils/Calculs/PieCalculator';
 
 const issueStateModel = fromJS({

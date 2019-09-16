@@ -1,8 +1,8 @@
 import {
 	put, takeEvery, all, call, select,
 } from 'redux-saga/effects';
-import { makeSelectorUrlToSend } from './selectors';
-import { getFetch } from '../../api/fetch';
+import { makeSelectorUrlToSend, makeSelectorCommentToSend } from './selectors';
+import { getFetch, postFetch } from '../../api/fetch';
 
 const githubApiHeaders = {
 	undefinedaccept: 'application/json',
@@ -11,7 +11,7 @@ const githubApiHeaders = {
 	'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36',
 	Accept: 'application/vnd.github.symmetra-preview+json',
 	'Content-Type': 'application/json',
-	Authorization: 'Token 295959a37f74b1f6d1418db78d2b6d081aeb0744',
+	Authorization: 'Token 295959a37f74b1f6d1418db78d2b6d081aeb0744', // Not recognized by github api...
 };
 
 
@@ -36,7 +36,6 @@ export function* sendUrlAndGetInfosAsync() {
 		yield put({ type: 'SEND_URL_ERROR' });
 	}
 }
-// ========================== END GET ASYNC SAGA
 
 export function* watcherSendUrlAndGetInfosAsync() {
 	yield takeEvery('SEND_URL_REQUEST', sendUrlAndGetInfosAsync);
@@ -45,5 +44,37 @@ export function* watcherSendUrlAndGetInfosAsync() {
 export function* rootSendUrlAndGetInfosAsync() {
 	yield all([
 		watcherSendUrlAndGetInfosAsync(),
+	]);
+}
+// ========================== END GET ASYNC SAGA
+
+// =========================== POST ASYNC SAGA
+
+const createComment = (url, body) => postFetch(`https://api.github.com/repos/${url}/comments`, githubApiHeaders, body);
+
+export function* createCommentAsync() {
+	console.log('sagas createCommentAsync');
+
+	try {
+		const url = yield select(makeSelectorUrlToSend);
+		const body = yield select(makeSelectorCommentToSend);
+		const createCommentRequest = yield call(createComment, url, body);
+		yield put({
+			type: 'CREATE_COMMENT_SUCCESS',
+			payload: createCommentRequest,
+		});
+	} catch (error) {
+		yield put({ type: 'CREATE_COMMENT_ERROR' });
+	}
+}
+
+export function* watchercreateCommentAsync() {
+	yield takeEvery('CREATE_COMMENT_REQUEST', createCommentAsync);
+}
+// ======================= END POST ASYNC SAGA
+
+export function* rootCreateCommentAsync() {
+	yield all([
+		watchercreateCommentAsync(),
 	]);
 }
