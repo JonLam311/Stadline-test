@@ -29,8 +29,7 @@ class Issue extends React.Component {
 		} = this.props;
 
 		let previousUsersPosition = 'left';
-		console.log(reposDatas);
-
+		
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">
@@ -69,11 +68,11 @@ class Issue extends React.Component {
 						reposDatas.comments.length ? (
 							<ReactMinimalPieChart
 								data={
-									[
-										{ title: 'One', value: 10, color: '#E38627' },
-										{ title: 'Two', value: 15, color: '#C13C37' },
-										{ title: 'Three', value: 20, color: '#6A2135' },
-									]
+									reposDatas.pieDatas.participants.map((participant, id) => ({
+										title: participant.user,
+										value: participant.nombreMots,
+										color: colors[id],
+									}))
 								}
 								label
 								labelStyle={{
@@ -86,7 +85,7 @@ class Issue extends React.Component {
 						) : ''}
 				</div>
 				<div id="discussion" className="col-md-8 justify-content-end">
-					{
+				{
 						reposDatas.comments.length ?
 							reposDatas.comments.map((comment, id) => {
 								const leftOrRight = id === 0 ?

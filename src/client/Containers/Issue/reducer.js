@@ -5,6 +5,7 @@ import { sortBy, uniqBy, uniq } from 'lodash';
 import {
 	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
 } from './constants';
+import pieCalculator from '../../Utils/Calculs/PieCalculator';
 
 const issueStateModel = fromJS({
 	urlToSend: '',
@@ -19,6 +20,10 @@ const issueStateModel = fromJS({
 		hiddenComments: [],
 		users: [],
 		hideCommentsForId: -1,
+		pieDatas: {
+			totalMots: 0,
+			participants: [],
+		},
 	},
 });
 
@@ -56,7 +61,8 @@ export default function issueReducer(
 			.setIn(['currentIssue', 'title'], payload.title)
 			.setIn(['currentIssue', 'author'], payload.author)
 			.setIn(['currentIssue', 'comments'], fromJS(payload.comments))
-			.setIn(['currentIssue', 'users'], fromJS(uniqBy(payload.comments, comment => comment.user.id).map(n => n.user)));
+			.setIn(['currentIssue', 'users'], fromJS(uniqBy(payload.comments, comment => comment.user.id).map(n => n.user)))
+			.setIn(['issue', 'pieDatas'], fromJS(pieCalculator(payload.comments)));
 
 	case SEND_URL_ERROR:
 		return state
