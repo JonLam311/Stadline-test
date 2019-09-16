@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import * as selectors from './selectors';
 import { onChangeInputAction, sendUrlRequestAction } from './actions';
 
+import Input from '../../Components/Input';
+
 class Issue extends React.Component {
 	render() {
 		const {
@@ -20,17 +22,28 @@ class Issue extends React.Component {
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">
-					<label htmlFor="urlToFetch">Entrez l&apos;url de l&apos;issue:</label>
-					<input
+					<Input
+						label="Entrez l'url de l'issue:"
 						type="text"
 						id="urlToFetch"
-						name="urlToFetch"
 						placeholder=":user/:repos/issues/:number"
 						required
-						onChange={_ => onChangeInput(_.target.value)}
+						name="urlToFetch"
+						onChange={onChangeInput}
 					/>
 					<button className="btn btn-primary" onClick={() => sendUrlRequest()} type="button">GO</button>
 				</form>
+
+				<div id="discussion" className="col-md-8 justify-content-end">
+					{
+						reposDatas.comments.length ?
+							reposDatas.comments.map(comment => (
+								<p>{comment.body}</p>
+							))
+							:
+							''
+					}
+				</div>
 			</div>
 		);
 	}
