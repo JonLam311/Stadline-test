@@ -41,7 +41,7 @@ class Issue extends React.Component {
 		let previousUsersPosition = 'left';
 		return (
 			<div id="Issue" className="row justify-content-center">
-				<form className="col-md-12">
+				<form className="row col-md-12 align-items-center" onSubmit={() => sendUrlRequest()} >
 					<Input
 						label="Entrez l'url de l'issue:"
 						type="text"
