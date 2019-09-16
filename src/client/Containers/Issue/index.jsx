@@ -6,7 +6,14 @@ import PropTypes from 'prop-types';
 import ReactMinimalPieChart from 'react-minimal-pie-chart';
 
 import * as selectors from './selectors';
-import { onChangeInputAction, onClickUserAction, sendUrlRequestAction, onChangeTextareaAction } from './actions';
+import { 
+	onChangeInputAction, 
+	onClickUserAction, 
+	onChangeTextareaAction, 
+	
+	sendUrlRequestAction, 
+	createCommentRequestAction,
+} from './actions';
 
 import Input from '../../Components/Input';
 import Commentaire from '../../Components/Commentaire';
@@ -28,6 +35,7 @@ class Issue extends React.Component {
 			onClickUser,
 
 			sendUrlRequest,
+			createCommentRequest,
 		} = this.props;
 
 		let previousUsersPosition = 'left';
@@ -162,6 +170,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	sendUrlRequest: () => {
 		dispatch(sendUrlRequestAction());
+	},
+	createCommentRequest: () => {
+		dispatch(createCommentRequestAction());
 	},
 });
 const mapStateToProps = state => ({

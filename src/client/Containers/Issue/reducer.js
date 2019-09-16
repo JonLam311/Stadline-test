@@ -3,7 +3,17 @@ import { fromJS } from 'immutable';
 import { sortBy, uniqBy, uniq } from 'lodash';
 
 import {
-	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR, ONCHANGE_TEXTAREA,
+	ONCHANGE_INPUT,
+	ONCHANGE_TEXTAREA,
+	ONCLICK_USER,
+
+	SEND_URL_REQUEST,
+	SEND_URL_SUCCESS,
+	SEND_URL_ERROR,
+
+	CREATE_COMMENT_ERROR,
+	CREATE_COMMENT_REQUEST,
+	CREATE_COMMENT_SUCCESS,
 } from './constants';
 import pieCalculator from '../../Utils/Calculs/PieCalculator';
 
@@ -61,8 +71,8 @@ export default function issueReducer(
 				:
 				pieCalculator(comments.filter(com => com.user.id !== payload))));
 
-	// ASYNC REQUEST
-	case SEND_URL_REQUEST:
+	// ASYNC REQUESTS
+	case SEND_URL_REQUEST: // SEND URL
 		return state
 			.setIn(['sendingUrl', 'status'], true);
 
@@ -80,6 +90,21 @@ export default function issueReducer(
 		return state
 			.setIn(['sendingUrl', 'status'], false)
 			.setIn(['sendingUrl', 'sended'], false);
+
+
+	case CREATE_COMMENT_REQUEST: // CREATE COMMENTS
+		console.log('reducer CREATE_COMMENT_REQUEST called');
+
+		return state;
+
+	case CREATE_COMMENT_SUCCESS:
+
+		return state;
+
+	case CREATE_COMMENT_ERROR:
+
+		return state;
+
 	default:
 		return state;
 	}

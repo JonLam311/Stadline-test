@@ -6,6 +6,10 @@ import {
 	SEND_URL_REQUEST,
 	SEND_URL_SUCCESS,
 	SEND_URL_ERROR,
+
+	CREATE_COMMENT_REQUEST,
+	CREATE_COMMENT_SUCCESS,
+	CREATE_COMMENT_ERROR,
 } from './constants';
 
 
@@ -30,7 +34,7 @@ export function onChangeTextareaAction(payload) {
 	};
 }
 
-// ========== START CONTROL SEND URL ACTION
+// ========== START ACTION SEND URL ACTION
 export function sendUrlRequestAction() {
 	return {
 		type: SEND_URL_REQUEST,
@@ -51,8 +55,30 @@ export function sendUrlErrorAction(payload) {
 		payload,
 	};
 }
-// ======== END CONTROL SEND URL ACTION
+// ======== END ACTION SEND URL ACTION
 
+
+// ======== START ACTION CREATE COMMENT
+export function createCommentRequestAction() {
+	return {
+		type: CREATE_COMMENT_REQUEST,
+	};
+}
+
+export function createCommentSuccessAction(payload) {
+	return {
+		type: CREATE_COMMENT_SUCCESS,
+		payload,
+	};
+}
+
+export function createCommentErrorAction(payload) {
+	return {
+		type: CREATE_COMMENT_ERROR,
+		payload,
+	};
+}
+// ======= END ACTION CREATE COMMENT
 
 export const onChangeInput = onChangeInputAction;
 export const onClickUser = onClickUserAction;
