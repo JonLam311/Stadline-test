@@ -1,6 +1,7 @@
 # stadline-test
 
 ## Installation
+Be sure you have nodejs installed
 
 Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
 
