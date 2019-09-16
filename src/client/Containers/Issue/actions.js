@@ -1,6 +1,7 @@
 import {
 	ONCHANGE_INPUT,
 	ONCLICK_USER,
+	ONCHANGE_TEXTAREA,
 
 	SEND_URL_REQUEST,
 	SEND_URL_SUCCESS,
@@ -18,6 +19,13 @@ export function onChangeInputAction(payload) {
 export function onClickUserAction(payload) {
 	return {
 		type: ONCLICK_USER,
+		payload,
+	};
+}
+
+export function onChangeTextareaAction(payload) {
+	return {
+		type: ONCHANGE_TEXTAREA,
 		payload,
 	};
 }

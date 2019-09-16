@@ -3,12 +3,13 @@ import { fromJS } from 'immutable';
 import { sortBy, uniqBy, uniq } from 'lodash';
 
 import {
-	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
+	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR, ONCHANGE_TEXTAREA,
 } from './constants';
 import pieCalculator from '../../Utils/Calculs/PieCalculator';
 
 const issueStateModel = fromJS({
 	urlToSend: '',
+	createCommentValue: '',
 	sendingUrl: {
 		status: false,
 		sended: false,
@@ -35,10 +36,17 @@ export default function issueReducer(
 	const hiddenComments = state.getIn(['currentIssue', 'hiddenComments']).toJS();
 
 	switch (type) {
+	// INPUT EVENTS
 	case ONCHANGE_INPUT:
 
 		return state
 			.set('urlToSend', payload);
+
+	case ONCHANGE_TEXTAREA:
+		return state
+			.set('createCommentValue', payload);
+
+	// CLICK EVENTS
 	case ONCLICK_USER:
 
 		return state
@@ -53,7 +61,7 @@ export default function issueReducer(
 				:
 				pieCalculator(comments.filter(com => com.user.id !== payload))));
 
-
+	// ASYNC REQUEST
 	case SEND_URL_REQUEST:
 		return state
 			.setIn(['sendingUrl', 'status'], true);

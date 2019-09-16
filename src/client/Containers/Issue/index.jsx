@@ -6,11 +6,12 @@ import PropTypes from 'prop-types';
 import ReactMinimalPieChart from 'react-minimal-pie-chart';
 
 import * as selectors from './selectors';
-import { onChangeInputAction, onClickUserAction, sendUrlRequestAction } from './actions';
+import { onChangeInputAction, onClickUserAction, sendUrlRequestAction, onChangeTextareaAction } from './actions';
 
 import Input from '../../Components/Input';
 import Commentaire from '../../Components/Commentaire';
 import ListGroup from '../../Components/ListGroup';
+import Textarea from '../../Components/Textarea';
 
 const colors = [
 	'#313B44', '#840032', '#E59500', '#6E6362', '#839073', '#7D6B91', '#C492B1',
@@ -23,6 +24,7 @@ class Issue extends React.Component {
 		} = this.props;
 		const {
 			onChangeInput,
+			onChangeTextarea,
 			onClickUser,
 
 			sendUrlRequest,
@@ -113,6 +115,25 @@ class Issue extends React.Component {
 							:
 							''
 					}
+					{
+						reposDatas.comments.length ? (
+							<div>
+								<Textarea
+									id="comment"
+									label="Post a comment on this issue"
+									placeholder="Insert your message here"
+									required
+									rows={5}
+									name="create_comment"
+									onChange={onChangeTextarea}
+									helpertext="Be warned, your message will be published on github site"
+								/>
+								<button className="btn btn-primary" onClick={() => createCommentRequest()} type="button">Comment</button>
+							</div>
+						)
+							:
+							''
+					}
 				</div>
 			</div>
 		);
@@ -126,11 +147,15 @@ Issue.propTypes = {
 	onClickUser: PropTypes.func.isRequired,
 
 	sendUrlRequest: PropTypes.func.isRequired,
+	onChangeTextarea: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
 	onChangeInput: (payload) => {
 		dispatch(onChangeInputAction(payload));
+	},
+	onChangeTextarea: (payload) => {
+		dispatch(onChangeTextareaAction(payload));
 	},
 	onClickUser: (payload) => {
 		dispatch(onClickUserAction(payload));
