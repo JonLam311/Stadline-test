@@ -1,0 +1,14 @@
+@keyframes colorChange {
+    0% {
+        color: $dark_sub;
+    }
+    33% {
+        color: $sub;
+    }
+    66% {
+        color: $light_sub;
+    }
+    100% {
+        color:$max_sub;
+    }
+}

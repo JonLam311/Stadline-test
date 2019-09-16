@@ -1,0 +1,92 @@
+// media querries
+$break_large: "screen and (min-width: 1200px)";
+$break_medium: "screen and (min-width: 900px)";
+$break_small: "only screen and (max-width : 699px)";
+
+// BACKGROUND
+$bg_main: #6B2737;
+$bg_sub: #746D75;
+
+// BACKGROUND IMAGE
+$b2: url("../../dist/assets/2b.jpg");
+
+// FONT COLOR
+$light_first: #444444;
+$first: #333333;
+$dark_first: #222222;
+
+$max_sub: #ffffff;
+$light_sub: #eeeeee;
+$sub: #dddddd;
+$dark_sub: #cccccc;
+
+
+$transparent: transparent;
+// $sub2: #66101f; // prune
+// $sub: #829399; // roman silver
+// $main: #545f66; // black coral
+// $darkred: darkred;
+// $fc_main: #56A3A6;
+// $fc_sub: #CAD49D;
+// WIDTH
+$w100: 100px;
+$w200: 200px;
+$w300: 300px;
+$w400: 400px;
+// HEIGHT
+$h100: 100px;
+$h200: 200px;
+$h300: 300px;
+$h400: 400px;
+
+// grid-rows
+$r1: 1fr;
+$r2: 1fr 1fr;
+$r3: 1fr 1fr 1fr;
+$r4: 1fr 1fr 1fr 1fr;
+$r5: 1fr 1fr 1fr 1fr 1fr;
+$r6: 1fr 1fr 1fr 1fr 1fr 1fr;
+$r7: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r8: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r9: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r10: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r11: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r12: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r13: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r14: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r15: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r16: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r17: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r18: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r19: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r20: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r21: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r22: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r23: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$r24: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+// grid-columns
+$c1: 1fr; 
+$c2: 1fr 1fr;
+$c3: 1fr 1fr 1fr;
+$c4: 1fr 1fr 1fr 1fr;
+$c5: 1fr 1fr 1fr 1fr 1fr;
+$c6: 1fr 1fr 1fr 1fr 1fr 1fr;
+$c7: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c8: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c9: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c10: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c11: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c12: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c13: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c14: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c15: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c16: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c17: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c18: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c19: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c20: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c21: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c22: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c23: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+$c24: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
