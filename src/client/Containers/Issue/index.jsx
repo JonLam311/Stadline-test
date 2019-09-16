@@ -7,6 +7,7 @@ import * as selectors from './selectors';
 import { onChangeInputAction, sendUrlRequestAction } from './actions';
 
 import Input from '../../Components/Input';
+import Commentaire from '../../Components/Commentaire';
 
 class Issue extends React.Component {
 	render() {
@@ -17,8 +18,7 @@ class Issue extends React.Component {
 			onChangeInput,
 			sendUrlRequest,
 		} = this.props;
-		console.log(reposDatas);
-
+		let previousUsersPosition = 'left';
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">
@@ -35,11 +35,32 @@ class Issue extends React.Component {
 				</form>
 
 				<div id="discussion" className="col-md-8 justify-content-end">
-					{
+				{
 						reposDatas.comments.length ?
-							reposDatas.comments.map(comment => (
-								<p>{comment.body}</p>
-							))
+							reposDatas.comments.map((comment, id) => {
+								const leftOrRight = id === 0 ?
+									'left'
+									:
+									comment.user.id !== reposDatas.comments[id - 1].user.id ?
+										previousUsersPosition === 'right' ?
+											'left'
+											:
+											'right'
+										:
+										previousUsersPosition;
+								previousUsersPosition = leftOrRight;
+								return (
+									<Commentaire
+										key={comment.id}
+										classNames={`
+											${leftOrRight} 
+											${reposDatas.author === comment.user.id ? 'author' : ''}`
+										}
+										imgSrc={comment.user.avatar_url}
+										text={comment.body}
+									/>
+								);
+							})
 							:
 							''
 					}
