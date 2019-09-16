@@ -29,7 +29,6 @@ class Issue extends React.Component {
 		} = this.props;
 
 		let previousUsersPosition = 'left';
-		
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">

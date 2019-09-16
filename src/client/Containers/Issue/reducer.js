@@ -47,7 +47,11 @@ export default function issueReducer(
 			.setIn(['currentIssue', 'comments'], fromJS(sortBy(hiddenComments.length ?
 				comments.concat(hiddenComments)
 				:
-				comments.filter(com => com.user.id !== payload), entry => entry.created_at)));
+				comments.filter(com => com.user.id !== payload), entry => entry.created_at)))
+			.setIn(['currentIssue', 'pieDatas'], fromJS(hiddenComments.length ?
+				pieCalculator(comments.concat(hiddenComments))
+				:
+				pieCalculator(comments.filter(com => com.user.id !== payload))));
 
 
 	case SEND_URL_REQUEST:
@@ -62,7 +66,7 @@ export default function issueReducer(
 			.setIn(['currentIssue', 'author'], payload.author)
 			.setIn(['currentIssue', 'comments'], fromJS(payload.comments))
 			.setIn(['currentIssue', 'users'], fromJS(uniqBy(payload.comments, comment => comment.user.id).map(n => n.user)))
-			.setIn(['issue', 'pieDatas'], fromJS(pieCalculator(payload.comments)));
+			.setIn(['currentIssue', 'pieDatas'], fromJS(pieCalculator(payload.comments)));
 
 	case SEND_URL_ERROR:
 		return state

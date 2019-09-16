@@ -1,7 +1,7 @@
 import { uniqBy } from 'lodash';
 
 export default function pieCalculator(comments) {
-	console.log('piecalculator called', comments);
+	console.log('Calculating words...', comments);
 	// Nombre de participant
 	// On sort les commentaires par id d'utilisateur
 	// puis on map ces commentaires afin d'obtenir le nombre de commentaire par participants
@@ -25,9 +25,7 @@ export default function pieCalculator(comments) {
 			totalMots += totalMotCommentaire;
 		}
 	}
-
-	console.log('Résultats pie calculator', totalMots, participants);
-
+	console.log('Calculate ended');
 	return {
 		totalMots,
 		participants,
