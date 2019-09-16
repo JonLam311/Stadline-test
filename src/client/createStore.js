@@ -31,7 +31,7 @@ export default function configureStore(initialState = {}) {
 	);
 
 	/* saga runs */
-	// saga_runs(sagaMiddleware);
+	saga_runs(sagaMiddleware);
 
 	return store;
 }

@@ -1,7 +1,5 @@
-// import { rootHelloSaga } from './Containers/Calculator/sagas';
-// import { rootIncrementAsync } from './Containers/Home/sagas';
+import { rootSendUrlAndGetInfosAsync } from './Containers/Issue/sagas';
 
-// export default function saga_runs(sagaMiddleware) {
-// 	sagaMiddleware.run(rootHelloSaga);
-// 	sagaMiddleware.run(rootIncrementAsync);
-// }
+export default function saga_runs(sagaMiddleware) {
+	sagaMiddleware.run(rootSendUrlAndGetInfosAsync);
+}

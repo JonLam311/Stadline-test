@@ -1,5 +1,4 @@
 import {
-	ONCLICK_BUTTON_GO,
 	ONCHANGE_INPUT,
 	SEND_URL_REQUEST,
 	SEND_URL_SUCCESS,
@@ -10,12 +9,6 @@ import {
 export function onChangeInputAction(payload) {
 	return {
 		type: ONCHANGE_INPUT,
-		payload,
-	};
-}
-export function onClickButtonGoAction(payload) {
-	return {
-		type: ONCLICK_BUTTON_GO,
 		payload,
 	};
 }
@@ -43,6 +36,8 @@ export function sendUrlErrorAction(payload) {
 // ======== END CONTROL SEND URL ACTION
 
 
-export const onClickButtonGo = onClickButtonGoAction;
-
 export const onChangeInput = onChangeInputAction;
+
+export const sendUrlRequest = sendUrlRequestAction;
+export const sendUrlSuccess = sendUrlSuccessAction;
+export const sendUrlError = sendUrlErrorAction;

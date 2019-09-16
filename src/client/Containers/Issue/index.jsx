@@ -4,15 +4,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as selectors from './selectors';
-import { onChangeInputAction, sendUrlRequestAction, onClickButtonGoAction } from './actions';
+import { onChangeInputAction, sendUrlRequestAction } from './actions';
 
 class Issue extends React.Component {
 	render() {
 		const {
+			reposDatas,
+		} = this.props;
+		const {
 			onChangeInput,
 			sendUrlRequest,
-			onClickButtonGo,
 		} = this.props;
+		console.log(reposDatas);
 
 		return (
 			<div id="Issue" className="row justify-content-center">
@@ -26,7 +29,7 @@ class Issue extends React.Component {
 						required
 						onChange={_ => onChangeInput(_.target.value)}
 					/>
-					<button className="btn btn-primary" onClick={() => onClickButtonGo()} type="button">GO</button>
+					<button className="btn btn-primary" onClick={() => sendUrlRequest()} type="button">GO</button>
 				</form>
 			</div>
 		);
@@ -34,6 +37,8 @@ class Issue extends React.Component {
 }
 
 Issue.propTypes = {
+	reposDatas: PropTypes.object.isRequired,
+
 	onChangeInput: PropTypes.func.isRequired,
 	sendUrlRequest: PropTypes.func.isRequired,
 };
@@ -42,15 +47,13 @@ const mapDispatchToProps = dispatch => ({
 	onChangeInput: (payload) => {
 		dispatch(onChangeInputAction(payload));
 	},
-	onClickButtonGo: () => {
-		dispatch(onClickButtonGoAction());
-	},
 	sendUrlRequest: () => {
 		dispatch(sendUrlRequestAction());
 	},
 });
 const mapStateToProps = state => ({
 	urlToSend: selectors.makeSelectorUrlToSend(state),
+	reposDatas: selectors.makeSelectorReposDatas(state),
 });
 
 const ReduxIssue = connect(

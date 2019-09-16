@@ -1,7 +1,6 @@
 import { fromJS } from 'immutable';
 import {
-	ONCLICK_BUTTON_GO,
-	ONCHANGE_INPUT,
+	ONCHANGE_INPUT, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
 } from './constants';
 
 const issueStateModel = fromJS({
@@ -12,6 +11,8 @@ const issueStateModel = fromJS({
 	},
 	currentIssue: {
 		title: 'Stadline Test',
+		author: '',
+		comments: [],
 	},
 });
 
@@ -21,15 +22,25 @@ export default function issueReducer(
 ) {
 	switch (type) {
 	case ONCHANGE_INPUT:
-		console.log('onchange input fired');
-
 		return state
 			.set('urlToSend', payload);
 
-	case ONCLICK_BUTTON_GO:
-		console.log('onclick go fired');
+	case SEND_URL_REQUEST:
 		return state
 			.setIn(['sendingUrl', 'status'], true);
+
+	case SEND_URL_SUCCESS:
+		return state
+			.setIn(['sendingUrl', 'status'], false)
+			.setIn(['sendingUrl', 'sended'], true)
+			.setIn(['currentIssue', 'title'], payload.title)
+			.setIn(['currentIssue', 'author'], payload.author)
+			.setIn(['currentIssue', 'comments'], fromJS(payload.comments));
+
+	case SEND_URL_ERROR:
+		return state;
+		// .setIn(['sendingUrl', 'status'], false)
+		// .setIn(['sendingUrl', 'sended'], false)
 	default:
 		return state;
 	}
