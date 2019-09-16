@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
 
-const selectIsOpen = state => state.nav.get('isOpen');
+const selectTitle = state => state.issue.getIn(['currentIssue', 'title']);
 
-export const makeSelectorIsOpen = createSelector(
-	selectIsOpen,
+export const makeSelectorTitle = createSelector(
+	selectTitle,
 	subState => subState,
 );

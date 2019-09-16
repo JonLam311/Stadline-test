@@ -5,20 +5,19 @@ import {
 } from './constants';
 
 const navStateModel = fromJS({
-	isOpen: true,
+	title: 'Un titre',
 });
 
 export default function navReducer(
 	state = navStateModel,
 	{ type/* , payload */ },
 ) {
-	const isOpen = state.get('isOpen');
+	const title = state.get('title');
 
 	switch (type) {
 	case SWITCH_OPEN:
-		console.log('switch open called');
 		return state
-			.set('hello', !isOpen);
+			.set('title', !title);
 	default:
 		return state;
 	}

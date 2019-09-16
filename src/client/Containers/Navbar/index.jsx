@@ -5,26 +5,33 @@ import PropTypes from 'prop-types';
 
 import * as selectors from './selectors';
 
-class ReduxNavigationbar extends React.Component {
+class Navigationbar extends React.Component {
 	render() {
+		const {
+			title,
+		} = this.props;
 		return (
-			<nav className="navbar" />
+			<nav className="navbar">
+				{title}
+			</nav>
 		);
 	}
 }
 
-// Navigationbar.propTypes = {
-// };
+Navigationbar.propTypes = {
+	title: PropTypes.string.isRequired,
+};
 
-// const mapDispatchToProps = dispatch => ({
-// });
+const mapDispatchToProps = dispatch => ({
+});
 
-// const mapStateToProps = state => ({
-// });
+const mapStateToProps = state => ({
+	title: selectors.makeSelectorTitle(state),
+});
 
-// const ReduxNavigationbar = connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps,
-// )(Navigationbar);
+const ReduxNavigationbar = connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(Navigationbar);
 
 export default ReduxNavigationbar;
