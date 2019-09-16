@@ -10,7 +10,6 @@ const DynamicRouter = (props) => {
 	return (
 		<Router>
 			<div id="div-router">
-				{/* <img id="main-bg" src={Img} /> */}
 				{ children }
 				<Switch>
 					{

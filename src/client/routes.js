@@ -1,33 +1,12 @@
-import ReduxHome from './Containers/Home';
-// import ReduxAbout from './Containers/About';
-// import ReduxCalculator from './Containers/Calculator';
-// import NotFound from './Containers/NotFound';
+import Home from './Containers/Home';
 
 const routes = [
 	{
 		name: 'Home',
 		path: '/',
-		component: ReduxHome,
+		component: Home,
 		protected: false,
 	},
-	// {
-	// 	name: 'About',
-	// 	path: '/about',
-	// 	component: ReduxAbout,
-	// 	protected: false,
-	// },
-	// {
-	// 	name: 'Calculator',
-	// 	path: '/calculator',
-	// 	component: ReduxCalculator,
-	// 	protected: false,
-	// },
-	// {
-	// 	name: '404',
-	// 	path: '404',
-	// 	component: NotFound,
-	// 	protected: false,
-	// },
 ];
 
 export default routes;

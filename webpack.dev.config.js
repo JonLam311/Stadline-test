@@ -70,6 +70,21 @@ module.exports = {
 			},
 		],
 	},
+	resolve: {
+		extensions: ['*', '.js', '.jsx', '.scss'],
+		alias: {
+			StyledComponents: path.resolve(__dirname, 'src/client/StyledComponents'),
+			Styles: path.resolve(__dirname, 'src/client/Utils/Styles'),
+			Datas: path.resolve(__dirname, 'src/client/Utils/Datas'),
+			Calculs: path.resolve(__dirname, 'src/client/Utils/Calculs'),
+			Images: path.resolve(__dirname, 'dist/assets'),
+			src: path.resolve(__dirname, 'src/client'),
+			Components: path.resolve(__dirname, 'src/client/Components'),
+			Containers: path.resolve(__dirname, 'src/client/Containers'),
+			HOC: path.resolve(__dirname, 'src/client/HOC'),
+			Style: path.resolve(__dirname, 'src/client/scss'),
+		},
+	},
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: './src/client/html/index.html',
