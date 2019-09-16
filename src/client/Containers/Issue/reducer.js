@@ -1,4 +1,7 @@
 import { fromJS } from 'immutable';
+
+import { uniqBy } from 'lodash';
+
 import {
 	ONCHANGE_INPUT, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
 } from './constants';
@@ -13,6 +16,7 @@ const issueStateModel = fromJS({
 		title: 'Stadline Test',
 		author: '',
 		comments: [],
+		users: [],
 	},
 });
 
@@ -35,7 +39,8 @@ export default function issueReducer(
 			.setIn(['sendingUrl', 'sended'], true)
 			.setIn(['currentIssue', 'title'], payload.title)
 			.setIn(['currentIssue', 'author'], payload.author)
-			.setIn(['currentIssue', 'comments'], fromJS(payload.comments));
+			.setIn(['currentIssue', 'comments'], fromJS(payload.comments))
+			.setIn(['currentIssue', 'users'], fromJS(uniqBy(payload.comments, comment => comment.user.id).map(n => n.user)));
 
 	case SEND_URL_ERROR:
 		return state;

@@ -8,6 +8,7 @@ import { onChangeInputAction, sendUrlRequestAction } from './actions';
 
 import Input from '../../Components/Input';
 import Commentaire from '../../Components/Commentaire';
+import ListGroup from '../../Components/ListGroup';
 
 class Issue extends React.Component {
 	render() {
@@ -19,6 +20,8 @@ class Issue extends React.Component {
 			sendUrlRequest,
 		} = this.props;
 		let previousUsersPosition = 'left';
+		console.log(reposDatas);
+		
 		return (
 			<div id="Issue" className="row justify-content-center">
 				<form className="col-md-12">
@@ -33,7 +36,25 @@ class Issue extends React.Component {
 					/>
 					<button className="btn btn-primary" onClick={() => sendUrlRequest()} type="button">GO</button>
 				</form>
-
+				<div className="col-md-3" id="list_and_pie">
+					<ul className="users list-group col-md-4 align-items-center">
+						{
+							reposDatas.users.map(user => (
+								<ListGroup
+									key={`${user.id}${user.created_at}`}
+									value={user.id}
+									classNames={`
+										list-group-item 
+										${reposDatas.author === user.id ? 'author' : ''}`
+									}
+									srcImg={user.avatar_url}
+									altImg={`${user.login}'s avatar`}
+									titleImg={`${user.login} ${reposDatas.author === user.id ? '(Author)' : ''}`}
+								/>
+							))
+						}
+					</ul>
+				</div>
 				<div id="discussion" className="col-md-8 justify-content-end">
 				{
 						reposDatas.comments.length ?
