@@ -9,6 +9,23 @@
     border-radius: 50%;
 }
 
+ul li {
+    list-style: none;
+    background-color: inherit;
+    transition: background-color .5s linear, opacity .5s linear;
+    opacity: 1;
+    &.selectedUser {
+        opacity: .4
+    }
+    &.author {
+        background-color: goldenrod;
+    }
+    &:hover {
+        background-color: #bbb;
+    }
+}
+
+
 .comment {
     margin-top: 1rem;
     &.author {

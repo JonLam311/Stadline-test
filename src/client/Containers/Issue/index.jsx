@@ -48,7 +48,8 @@ class Issue extends React.Component {
 									key={`${user.id}${user.created_at}`}
 									value={user.id}
 									classNames={`
-										list-group-item 
+										list-group-item
+										${reposDatas.hideCommentsForId === user.id ? 'selectedUser' : ''}
 										${reposDatas.author === user.id ? 'author' : ''}`
 									}
 									srcImg={user.avatar_url}

@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 
-import { uniqBy } from 'lodash';
+import { sortBy, uniqBy, uniq } from 'lodash';
 
 import {
 	ONCHANGE_INPUT, ONCLICK_USER, SEND_URL_REQUEST, SEND_URL_SUCCESS, SEND_URL_ERROR,
@@ -16,7 +16,9 @@ const issueStateModel = fromJS({
 		title: 'Stadline Test',
 		author: '',
 		comments: [],
+		hiddenComments: [],
 		users: [],
+		hideCommentsForId: -1,
 	},
 });
 
@@ -24,14 +26,23 @@ export default function issueReducer(
 	state = issueStateModel,
 	{ type, payload },
 ) {
+	const comments = state.getIn(['currentIssue', 'comments']).toJS();
+	const hiddenComments = state.getIn(['currentIssue', 'hiddenComments']).toJS();
+
 	switch (type) {
 	case ONCHANGE_INPUT:
+
 		return state
 			.set('urlToSend', payload);
 	case ONCLICK_USER:
-		console.log('click user fired');
 
-		return state;
+		return state
+			.setIn(['currentIssue', 'hideCommentsForId'], payload)
+			.setIn(['currentIssue', 'hiddenComments'], fromJS(comments.filter(com => com.user.id === payload)))
+			.setIn(['currentIssue', 'comments'], fromJS(sortBy(hiddenComments.length ?
+				comments.concat(hiddenComments)
+				:
+				comments.filter(com => com.user.id !== payload), entry => entry.created_at)));
 
 
 	case SEND_URL_REQUEST:
@@ -48,9 +59,9 @@ export default function issueReducer(
 			.setIn(['currentIssue', 'users'], fromJS(uniqBy(payload.comments, comment => comment.user.id).map(n => n.user)));
 
 	case SEND_URL_ERROR:
-		return state;
-		// .setIn(['sendingUrl', 'status'], false)
-		// .setIn(['sendingUrl', 'sended'], false)
+		return state
+			.setIn(['sendingUrl', 'status'], false)
+			.setIn(['sendingUrl', 'sended'], false);
 	default:
 		return state;
 	}
